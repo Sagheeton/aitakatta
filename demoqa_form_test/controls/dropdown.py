@@ -1,0 +1,25 @@
+from selene import command, have
+from selene.core.entity import SeleneElement
+from selene.support.shared import browser
+
+
+def choose(element: SeleneElement, /, *, option: str, by_autocomplete: bool = False):
+    if by_autocomplete:
+        element.type(option).press_enter()
+    else:
+        element.perform(command.js.scroll_into_view).click()
+        browser.all('[id^=react-select-][id*=-option]').element_by(have.exact_text(option)).click()
+
+
+'''
+# in place of two different  (KISS in one word):
+
+
+def select(element: SeleneElement, /, *, option: str):
+    element.perform(command.js.scroll_into_view).click()
+    browser.all('[id^=react-select-][id*=-option]').element_by(have.exact_text(option)).click()
+
+
+def autocomplete(element: SeleneElement, /, *, option: str):
+    element.type(option).press_enter()
+'''
