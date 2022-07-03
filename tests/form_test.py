@@ -47,7 +47,7 @@ def test_form():
     city_merrut = s('[id*="select"][id*="option-2"]')
     city_merrut.perform(command.js.click)
 
-    s('[id="userEmail"]').submit()
+    s('#submit').perform(command.js.click)
 
 
 
