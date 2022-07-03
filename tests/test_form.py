@@ -1,4 +1,5 @@
-from selene import command
+from selene import command, have
+from selene.core.entity import SeleneElement
 from selene.support.shared import browser
 
 from selene.support.shared.jquery_style import s
@@ -37,12 +38,16 @@ def test_form():
 
     s('[id="currentAddress"]').type("some street somewhere over there wherever it would be, 11, 48")
 
-    s('[id="state"]').perform(command.js.scroll_into_view).click()
-    state_uttar_pradesh = s('[id*="select"][id*="option-1"]')
-    state_uttar_pradesh.click()
+    def select_by_choosing(element: SeleneElement, /, *, option: str):
+        element.perform(command.js.scroll_into_view).click()
+        browser.all('[id^=react-select-][id*=-option]').element_by(have.exact_text(option)).click()
 
-    s('[id="city"]').click()
-    city_merrut = s('[id*="select"][id*="option-2"]')
-    city_merrut.perform(command.js.click)
+    def select_by_autocomplete(element: SeleneElement, /, *, option: str):
+        element.type(option).press_enter()
+
+    select_by_choosing(s('#state'), option='Uttar Pradesh')
+
+    city = s('[id*="select-4"]')
+    select_by_autocomplete(city, option='Merrut')
 
     s('#submit').perform(command.js.click)
