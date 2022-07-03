@@ -1,7 +1,5 @@
-#просто импорт браузера
-from selene import have, be, by, command
+from selene import command
 from selene.support.shared import browser
-import os
 
 from selene.support.shared.jquery_style import s
 
@@ -48,6 +46,3 @@ def test_form():
     city_merrut.perform(command.js.click)
 
     s('#submit').perform(command.js.click)
-
-
-
