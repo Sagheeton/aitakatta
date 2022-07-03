@@ -13,6 +13,7 @@ from selenium.webdriver.chrome.service import Service
 def set_web_driver():
     s = chromedriver_autoinstaller.install()
     browser.config.driver = webdriver.Chrome(service=Service(s))
+    browser.config.driver.set_window_size(1920, 1080)
 # *********************************************************
 
 
