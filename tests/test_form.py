@@ -2,7 +2,7 @@ from selene import command
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
 
-from demoqa_form_test.controls import dropdown
+from demoqa_form_test.controls import dropdown, datepicker
 from demoqa_form_test.controls import resources
 from demoqa_form_test.controls import tags_input
 
@@ -19,21 +19,11 @@ def test_form():
 
     s('#userNumber').type('88002000600')
 
-    s('#dateOfBirthInput').click()
-    s('[class*="month-select"]').click().element('[value="0"]').click()
-    s('[class*="year-select"]').click().element('[value="1989"]').click()
-    s(f'[class*="datepicker__day--0{31}"]').click()
+    datepicker.choose_by_clicking(31, 1, 1989)
 
     subjects = s('#subjectsInput')
     tags_input.add(subjects, from_='Chem', to='Chemistry')
-
-    '''
-    # My version:
-
-    s('#subjectsInput').send_keys('m').hover()
-    subject_maths = s('#react-select-2-option-0')
-    subject_maths.click()
-    '''
+    tags_input.add(subjects, from_='m')
 
     hobbies_sports = s('[for="hobbies-checkbox-1"]')
     hobbies_sports.click()
@@ -48,6 +38,6 @@ def test_form():
     dropdown.choose(s('#state'), option='Uttar Pradesh')
 
     city = s('[id*="select-4"]')
-    dropdown.choose(city, option='Merrut', by_autocomplete=True)
+    dropdown.choose(city, option='Merrut', by_pressing_tab=True)
 
     s('#submit').perform(command.js.click)

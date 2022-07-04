@@ -1,11 +1,13 @@
+from typing import Optional
+
 from selene import command, have
 from selene.core.entity import Element
 from selene.support.shared import browser
 
 
-def choose(element: Element, /, *, option: str, by_autocomplete: bool = False):
-    if by_autocomplete:
-        element.type(option).press_enter()
+def choose(element: Element, /, *, option: str, by_pressing_tab: Optional [bool] = False):
+    if by_pressing_tab:
+        element.type(option).press_tab()
     else:
         element.perform(command.js.scroll_into_view).click()
         browser.all('[id^=react-select-][id*=-option]').element_by(have.exact_text(option)).click()
