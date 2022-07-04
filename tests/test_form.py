@@ -1,6 +1,7 @@
 from selene import command
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
+
 from demoqa_form_test.controls import dropdown
 from demoqa_form_test.controls import resources
 from demoqa_form_test.controls import tags_input
@@ -26,13 +27,14 @@ def test_form():
     subjects = s('#subjectsInput')
     tags_input.add(subjects, from_='Chem', to='Chemistry')
 
-'''
-# My version:
+    '''
+    # My version:
 
     s('#subjectsInput').send_keys('m').hover()
     subject_maths = s('#react-select-2-option-0')
     subject_maths.click()
-'''
+    '''
+
     hobbies_sports = s('[for="hobbies-checkbox-1"]')
     hobbies_sports.click()
     hobbies_music = s('[for="hobbies-checkbox-2"]')
