@@ -2,9 +2,11 @@ from selene import command
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
 
-from demoqa_form_test.controls import dropdown, datepicker
-from demoqa_form_test.controls import resources
-from demoqa_form_test.controls import tags_input
+from demoqa_form_test import utils
+from demoqa_form_test.controls.checkboxes import Checkboxes
+from demoqa_form_test.controls.datepicker import DatePicker
+from demoqa_form_test.controls.dropdown import Dropdown
+from demoqa_form_test.controls.tags_input import TagsInput
 
 
 def test_form():
@@ -19,25 +21,25 @@ def test_form():
 
     s('#userNumber').type('88002000600')
 
-    datepicker.choose_by_clicking(31, 1, 1989)
+    # DatePicker(s('#dateOfBirthInput')).choose_by_typing('31 Jan 1989')
+    DatePicker(s('#dateOfBirthInput')).choose_by_clicking(31, 1, 1989)
 
-    subjects = s('#subjectsInput')
-    tags_input.add(subjects, from_='Chem', to='Chemistry')
-    tags_input.add(subjects, from_='m')
+    subjects = TagsInput(s('#subjectsInput'))
+    subjects.add(from_='Chem', to='Chemistry')
+    subjects.add(from_='m')
 
-    hobbies_sports = s('[for="hobbies-checkbox-1"]')
-    hobbies_sports.click()
-    hobbies_music = s('[for="hobbies-checkbox-2"]')
-    hobbies_music.click()
+    hobbies = Checkboxes()
+    sports = s('[for="hobbies-checkbox-1"]')
+    music = s('[for="hobbies-checkbox-3"]')
+    hobbies.check(sports, music)
 
-    path = resources.get_full_file_path(r'resources\e85.jpg')
+    path = utils.get_full_file_path(relaive_path=r'resources\e85.jpg')
     s('[id="uploadPicture"]').send_keys(path)
 
     s('[id="currentAddress"]').type("some street somewhere over there wherever it would be, 11, 48")
 
-    dropdown.choose(s('#state'), option='Uttar Pradesh')
+    Dropdown(s('#state')).choose(option='Uttar Pradesh')
 
-    city = s('[id*="select-4"]')
-    dropdown.choose(city, option='Merrut', by_pressing_tab=True)
+    Dropdown(s('#city')).choose(option='Merrut', by_pressing_tab=True)
 
     s('#submit').perform(command.js.click)

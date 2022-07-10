@@ -5,12 +5,16 @@ from selene.core.entity import Element
 from selene.support.shared import browser
 
 
-def choose(element: Element, /, *, option: str, by_pressing_tab: Optional [bool] = False):
-    if by_pressing_tab:
-        element.type(option).press_tab()
-    else:
-        element.perform(command.js.scroll_into_view).click()
-        browser.all('[id^=react-select-][id*=-option]').element_by(have.exact_text(option)).click()
+class Dropdown:
+    def __init__(self, element: Element):
+        self.element = element
+
+    def choose(self, /, *, option: str, by_pressing_tab: Optional[bool] = False):
+        if by_pressing_tab:
+            self.element.element('[id*=-input]').type(option).press_tab()
+        else:
+            self.element.perform(command.js.scroll_into_view).click()
+            browser.all('[id*=select-][id*=-option]').element_by(have.exact_text(option)).click()
 
 
 '''
