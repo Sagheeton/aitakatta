@@ -22,7 +22,7 @@ def test_form():
     s('#userNumber').type('88002000600')
 
     # DatePicker(s('#dateOfBirthInput')).choose_by_typing('31 Jan 1989')
-    DatePicker(s('#dateOfBirthInput')).choose_by_clicking(31, 1, 1989)
+    DatePicker(s('#dateOfBirthInput')).set_by_clicking(31, 1, 1989)
 
     subjects = TagsInput(s('#subjectsInput'))
     subjects.add(from_='Chem', to='Chemistry')
