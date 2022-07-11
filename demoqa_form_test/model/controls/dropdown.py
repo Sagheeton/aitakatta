@@ -9,7 +9,7 @@ class Dropdown:
     def __init__(self, element: Element):
         self.element = element
 
-    def choose(self, /, *, option: str, by_pressing_tab: Optional[bool] = False):
+    def choose(self, option: str, /, *, by_pressing_tab: Optional[bool] = False):
         if by_pressing_tab:
             self.element.element('[id*=-input]').type(option).press_tab()
         else:
