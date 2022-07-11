@@ -3,19 +3,21 @@ from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
 
 from demoqa_form_test import utils
-from demoqa_form_test.controls.checkboxes import Checkboxes
-from demoqa_form_test.controls.datepicker import DatePicker
-from demoqa_form_test.controls.dropdown import Dropdown
-from demoqa_form_test.controls.tags_input import TagsInput
-from demoqa_form_test.table import Table
+from demoqa_form_test.model.controls.checkboxes import Checkboxes
+from demoqa_form_test.model.controls.datepicker import DatePicker
+from demoqa_form_test.model.controls.dropdown import Dropdown
+from demoqa_form_test.model.controls.tags_input import TagsInput
+from demoqa_form_test.model.pages.student_registration_page import StudentRegistrationPage
+from demoqa_form_test.model.pages.components.table import Table
 
 
 def test_form():
     browser.open('/automation-practice-form')
 
-    s('#firstName').type('Name')
-    s('#lastName').type('Surname')
-    s('#userEmail').type('email@gmail.com')
+    form = StudentRegistrationPage()
+
+    form.set_first_name('Name').set_last_name('Surname')
+    form.set_email('email@gmail.com')
 
     gender_male = s('[for="gender-radio-1"]')
     gender_male.click()
@@ -43,7 +45,7 @@ def test_form():
 
     s('#submit').perform(command.js.click)
 
-    Table(s('.table')).get_cell(1, 2).should(have.exact_text('Name Surname'))
+    # Table(s('.table')).get_cell(1, 2).should(have.exact_text('Name Surname'))
     Table(s('.table')).get_cell(2, 2).should(have.exact_text('email@gmail.com'))
     Table(s('.table')).get_cell(3, 2).should(have.exact_text('Male'))
     Table(s('.table')).get_cell(4, 2).should(have.exact_text('8800200060'))
