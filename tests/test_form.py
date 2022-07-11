@@ -26,8 +26,7 @@ def test_form():
     DatePicker(s('#dateOfBirthInput')).set_by_clicking(31, 1, 1989)
 
     subjects = TagsInput(s('#subjectsInput'))
-    subjects.add(from_='Chem', to='Chemistry')
-    subjects.add(from_='m')
+    subjects.add(from_='Chem', to='Chemistry').add(from_='m')
 
     hobbies = Checkboxes()
     sports = s('[for="hobbies-checkbox-1"]')
@@ -40,7 +39,6 @@ def test_form():
     s('[id="currentAddress"]').type("some street somewhere over there wherever it would be, 11, 48")
 
     Dropdown(s('#state')).choose(option='Uttar Pradesh')
-
     Dropdown(s('#city')).choose(option='Merrut', by_pressing_tab=True)
 
     s('#submit').perform(command.js.click)

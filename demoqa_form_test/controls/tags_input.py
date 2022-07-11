@@ -14,4 +14,4 @@ class TagsInput:
         else:
             self.element.type(from_)
             ss('.subjects-auto-complete__option').element_by(have.text(to or from_)).click()
-
+        return self
