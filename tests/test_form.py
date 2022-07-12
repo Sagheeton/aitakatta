@@ -20,6 +20,6 @@ def test_form():
 
     app = ApplicationManager(student)
 
-    app.page.open_form().fill_form().submit_form()
+    app.page.open_form.fill_form.submit_form
 
-    app.result.check_content()
+    app.result.check_content

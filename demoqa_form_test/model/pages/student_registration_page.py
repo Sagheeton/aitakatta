@@ -14,10 +14,12 @@ class StudentRegistrationPage:
     def __init__(self, student: Student):
         self.student = student
 
+    @property
     def open_form(self):
         browser.open('/automation-practice-form')
         return self
 
+    @property
     def fill_form(self):
         st = self.student
         s('#firstName').type(st.first_name)
@@ -43,6 +45,7 @@ class StudentRegistrationPage:
         Dropdown(s('#city')).choose(st.city, by_pressing_tab=True)
         return self
 
+    @property
     def submit_form(self):
         s('#submit').perform(command.js.click)
         return self

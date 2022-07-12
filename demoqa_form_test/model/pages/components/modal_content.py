@@ -9,6 +9,7 @@ class ModalContent:
     def __init__(self, student: Student):
         self.student = student
 
+    @property
     def check_content(self):
         Table(s('.table')).get_cell(1, 2).should(have.exact_text('Name Surname'))
         Table(s('.table')).get_cell(2, 2).should(have.exact_text('email@gmail.com'))
