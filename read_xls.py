@@ -1,6 +1,6 @@
 import xlrd
 
-book = xlrd.open_workbook(r'resources/file_example_XLS_10.xls')
+book = xlrd.open_workbook(r'files/file_example_XLS_10.xls')
 print(book.nsheets)
 print(book.sheet_names())
 

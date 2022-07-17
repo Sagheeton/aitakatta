@@ -1,7 +1,7 @@
 from PyPDF2 import PdfReader
 
 def test_pdf_number_of_pages():
-    reader = PdfReader('resources/latest.pdf')
+    reader = PdfReader('latest.pdf')
     numer_of_pages = len(reader.pages)
     assert numer_of_pages == 412, 'В файле не 412 страниц'
 
