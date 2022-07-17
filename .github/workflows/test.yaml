@@ -2,7 +2,8 @@ name: Test
 
 on:
   push:
-
+    branches:
+      -'Lesson8_Allure'
 jobs:
   test:
     name: Test
