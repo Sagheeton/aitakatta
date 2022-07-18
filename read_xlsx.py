@@ -1,6 +1,8 @@
 from openpyxl import load_workbook
 
-wb = load_workbook(r'file_example_XLSX_50.xlsx')
 
-sheet = wb.active
-print(sheet.cell(row=3, column=2).value)
+def test_some_cell_value(file):
+    wb = load_workbook(file)
+
+    sheet = wb.active
+    assert sheet.cell(row=3, column=2).value == 'Mara', 'Имя в ячейке не Mara'
