@@ -1,3 +1,4 @@
+import allure
 from selene.core import command
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
@@ -15,11 +16,13 @@ class StudentRegistrationPage:
         self.student = student
 
     @property
+    @allure.step('Открываем форму')
     def open_form(self):
         browser.open('/automation-practice-form')
         return self
 
     @property
+    @allure.step('Заполняем форму')
     def fill_form(self):
         st = self.student
         s('#firstName').type(st.first_name)
@@ -46,6 +49,7 @@ class StudentRegistrationPage:
         return self
 
     @property
+    @allure.step('Отправляем форму')
     def submit_form(self):
         s('#submit').perform(command.js.click)
         return self

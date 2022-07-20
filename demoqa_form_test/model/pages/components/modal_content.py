@@ -1,3 +1,4 @@
+import allure
 from selene.support.conditions import have
 from selene.support.shared.jquery_style import s
 
@@ -10,6 +11,7 @@ class ModalContent:
         self.student = student
 
     @property
+    @allure.step('Проверяем форму')
     def check_content(self):
         st = self.student
         Table(s('.table')).get_cell(1, 2).should(have.exact_text(f'{st.first_name} {st.last_name}'))
