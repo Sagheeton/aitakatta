@@ -1,7 +1,7 @@
-from enum import IntEnum
+from enum import Enum
 
 
-class Hobbies(IntEnum):
+class Hobbies(Enum):
     SPORTS = 1
     READING = 2
     MUSIC = 3

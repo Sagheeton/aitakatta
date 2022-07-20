@@ -25,7 +25,7 @@ class StudentRegistrationPage:
         s('#firstName').type(st.first_name)
         s('#lastName').type(st.last_name)
         s('#userEmail').type(st.email)
-        s(f'[for="gender-radio-{st.gender}"]').click()
+        s(f'[for="gender-radio-{st.gender.value}"]').click()
         s('#userNumber').type(st.mobile_number)
         DatePicker(s('#dateOfBirthInput')).set_by_clicking(st.date_of_birth)
 
@@ -33,7 +33,7 @@ class StudentRegistrationPage:
             TagsInput(s('#subjectsInput')).add(from_=subject)
 
         for hobby in st.hobbies:
-            Checkboxes().check(s(f'[for="hobbies-checkbox-{hobby}"]'))
+            Checkboxes().check(s(f'[for="hobbies-checkbox-{hobby.value}"]'))
 
         s('[id="uploadPicture"]').send_keys(
             utils.get_full_file_path(relaive_path=st.picture_path)

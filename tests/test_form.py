@@ -5,8 +5,8 @@ from demoqa_form_test.data.student import Student
 from demoqa_form_test.model.application_manager import ApplicationManager
 
 def test_form():
-    student = Student(first_name='Name',
-                      last_name='Surname',
+    student = Student(first_name='Shapath',
+                      last_name='Bharadwaj',
                       email='email@gmail.com',
                       gender=Gender.MALE,
                       mobile_number='8800200060',
@@ -14,7 +14,7 @@ def test_form():
                       subjects=['Chemistry', 'Maths'],
                       hobbies=[Hobbies.SPORTS, Hobbies.MUSIC],
                       picture_path=r'resources\e85.jpg',
-                      current_address='some street somewhere over there wherever it would be, 11, 48',
+                      current_address='MJPRU Entrance Rd, M.J.P Rohilkahand University',
                       state='Uttar Pradesh',
                       city='Merrut'
                       )

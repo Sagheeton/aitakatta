@@ -16,10 +16,12 @@ class ModalContent:
         Table(s('.table')).get_cell(2, 2).should(have.exact_text(st.email))
         Table(s('.table')).get_cell(3, 2).should(have.exact_text(st.gender.name.title()))
         Table(s('.table')).get_cell(4, 2).should(have.exact_text(st.mobile_number))
-        Table(s('.table')).get_cell(5, 2).should(have.exact_text('31 January,1989'))
+        Table(s('.table')).get_cell(5, 2).should(have.exact_text(st.date_of_birth.__str__()))
         Table(s('.table')).get_cell(6, 2).should(have.exact_text(', '.join(st.subjects)))
-        Table(s('.table')).get_cell(7, 2).should(have.exact_text(', '.join(st.hobbies)))
-        Table(s('.table')).get_cell(8, 2).should(have.exact_text('e85.jpg'))
+        Table(s('.table')).get_cell(7, 2).should(have.exact_text(', '.join(
+            [h.name.title() for h in st.hobbies]
+        )))
+        Table(s('.table')).get_cell(8, 2).should(have.exact_text(st.picture_path.split("\\", 1)[1]))
         Table(s('.table')).get_cell(9, 2).should(
             have.exact_text(st.current_address)
         )
