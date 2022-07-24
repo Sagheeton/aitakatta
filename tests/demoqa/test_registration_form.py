@@ -2,6 +2,9 @@ import allure
 from selene import have, by
 from selene.support.shared import browser
 
+from tests.utils import attach
+
+
 @allure.title("Successful fill form")
 def test_successful():
     first_name = "Alex"
@@ -38,3 +41,8 @@ def test_successful():
         browser.element("#example-modal-sizes-title-lg").should(have.text("Thanks for submitting the form"))
         # browser.element(".table-responsive").should(
         #     have.texts(first_name, last_name, "alex@egorov.com", "Some street 1"))
+
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
